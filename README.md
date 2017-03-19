@@ -1,4 +1,4 @@
-# Luminescence: nwHacks 2017 - Backend Specification
+# Luminescence: Lifeband Backend Specification (nwHacks 2017)
 
 pdfLaTeX specification for the backend REST API.
 
