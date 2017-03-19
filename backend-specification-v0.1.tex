@@ -1,0 +1,112 @@
+%
+% Luminescence: nwHacks 2017
+% Backend Specification
+%
+% Author: Jeffrey Leung
+%
+
+\documentclass[10pt, oneside, letterpaper, titlepage]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[ampersand]{easylist} % For 8-level simulations of itemize using easylist
+	\ListProperties(
+		Progressive*=5ex,
+		Space=5pt,
+		Space*=5pt,
+		Style1*=\textbullet\ \ ,
+		Style2*=\begin{normalfont}\begin{bfseries}\textendash\end{bfseries}\end{normalfont} \ \ ,
+		Style3*=\textasteriskcentered\ \ ,
+		Style4*=\textperiodcentered\ \ ,
+		Style5*=\textbullet\ \ ,
+		Style6*=\begin{normalfont}\begin{bfseries}\textendash\end{bfseries}\end{normalfont}\ \ ,
+		Style7*=\textasteriskcentered\ \ ,
+		Style8*=\textperiodcentered\ \ ,
+		Hide1=1,
+		Hide2=2,
+		Hide3=3,
+		Hide4=4,
+		Hide5=5,
+		Hide6=6,
+		Hide7=7,
+		Hide8=8 )
+\usepackage{geometry}
+	\geometry{margin=1.2in}
+\usepackage{graphicx}
+	\graphicspath{ {img/} }
+\usepackage[colorlinks=true, linkcolor=blue]{hyperref}
+\usepackage{listings}
+\usepackage{verbatim}
+
+\renewcommand{\arraystretch}{1.2}
+
+% Font-related commands:
+\usepackage[T1]{fontenc} % Allows the use of symbols in LMSS such as the braces
+\usepackage[default, osfigures]{opensans}
+\usepackage{textcomp} % Allows the use of symbols in LMSS such as textasterisk and textbullet
+\renewcommand{\familydefault}{\sfdefault}
+
+\title{Luminescence: nwHacks 2017 \\ \large Backend Specification v0.1}
+\author{Jeffrey Leung}
+\date{March 18, 2017}
+
+\begin{document}
+
+	\maketitle
+	\clearpage
+
+	\section{Patient Information}
+
+	Each patient is uniquely identified by a patient ID.
+
+	\subsection{Retrieve patient data}
+
+		Patient data is retrieved primarily through the patient ID and secondarily through the tag ID.
+
+		\subsubsection*{Request}
+
+		Path:
+
+		\begin{verbatim}
+GET /patient
+		\end{verbatim}
+
+		\noindent
+		Parameters:
+		\begin{itemize}
+			\item \verb|patientId|: Unique ID of the patient
+			\begin{itemize}
+				\item Required if \verb|tagId| is not provided
+			\end{itemize}
+			\item \verb|tagId|: Unique ID of the tag
+			\begin{itemize}
+				\item Required if \verb|patientId| is not provided
+			\end{itemize}
+		\end{itemize}
+
+		\subsubsection*{Response}
+
+		\begin{verbatim}
+{
+  "id" : "8cfb5ca9-83b3-41d2-9044-3ea01780242",
+  "information" : {
+    "fullName" : "Jacky Chao",
+    "gender" : "m",
+    "address" : "1234 University Drive, Burnaby, BC, Canada",
+    "birth" : {
+      "day" : 29,
+      "month" : 12,
+      "year" : 1993
+    }
+  },
+  "emergencyContact" : {
+    "fullName" : "Carlson Chan",
+    "phone" : "604-301-9592"
+  },
+  "history" : [
+  ],
+  "medication" : [
+  ]
+}
+		\end{verbatim}
+
+\end{document}
