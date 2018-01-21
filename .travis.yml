@@ -1,0 +1,5 @@
+install:
+  - apt install --assume-yes texlive texlive-fonts-extra
+
+script:
+  - pdflatex backend-specification-v0.1.tex
